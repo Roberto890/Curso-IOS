@@ -7,35 +7,43 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
-    var eggTimes = ["Soft": 300, "Medium": 420, "Hard": 720]
+    @IBOutlet weak var lblTime: UILabel!
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
     
+    var player: AVAudioPlayer!
+    
+    var eggTimes = ["Soft": 300.0, "Medium": 450.0, "Hard": 720.0]
+    
+    var timer = Timer()
+    var secondsPassed: Double = 0
     
     @IBAction func hardnessSelected(_ sender: UIButton) {
+        self.timer.invalidate()
+        secondsPassed = 0
+        progressBar.progress = 0
         let hardness = sender.currentTitle!
-        let maxSeconds = eggTimes[hardness]!
-        switch hardness {
-        case "Soft":
-            TimeCounter(seconds: maxSeconds)
-        case "Medium":
-            TimeCounter(seconds: maxSeconds)
-        case "Hard":
-            TimeCounter(seconds: maxSeconds)
-        default:
-            print("no one time selected")
-        }
+        TimeCounter(maxSeconds: eggTimes[hardness]!)
+
     }
     
-    func TimeCounter(seconds: Int){
-        var secondsRemaining = seconds
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){ (Timer) in
-            if secondsRemaining > 0{
-                print("\(secondsRemaining) seconds")
-                secondsRemaining -= 1
+    func TimeCounter(maxSeconds: Double){
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){ [self] (Timer) in
+            if secondsPassed < maxSeconds {
+                secondsPassed += 1
+                let percentageProgress = self.secondsPassed / maxSeconds
+                progressBar.progress = Float(percentageProgress)
+                lblTime.text = "\(secondsPassed) de \(maxSeconds) segundos"
             }else {
-                Timer.invalidate()
+                self.timer.invalidate()
+                lblTitle.text = "DONE!"
+                let url = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3")
+                player = try! AVAudioPlayer(contentsOf: url!)
+                player.play()
             }
         }
     }
