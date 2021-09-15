@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA3611D426F24EC700A9A7F5 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3611D326F24EC700A9A7F5 /* APIRequest.swift */; };
+		BA3611D726F2597400A9A7F5 /* APIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3611D626F2597400A9A7F5 /* APIModels.swift */; };
 		BAACFDB226F13C00003E551F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAACFDB126F13C00003E551F /* AppDelegate.swift */; };
 		BAACFDB426F13C00003E551F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAACFDB326F13C00003E551F /* SceneDelegate.swift */; };
 		BAACFDB626F13C00003E551F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAACFDB526F13C00003E551F /* ViewController.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA3611D326F24EC700A9A7F5 /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		BA3611D626F2597400A9A7F5 /* APIModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModels.swift; sourceTree = "<group>"; };
 		BAACFDAE26F13C00003E551F /* CleanSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAACFDB126F13C00003E551F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAACFDB326F13C00003E551F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +65,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA3611D126F24E9200A9A7F5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BA3611D226F24E9E00A9A7F5 /* API */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BA3611D226F24E9E00A9A7F5 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				BA3611D326F24EC700A9A7F5 /* APIRequest.swift */,
+				BA3611D626F2597400A9A7F5 /* APIModels.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		BA3611D526F24F8E00A9A7F5 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				BAACFDD726F13FEB003E551F /* Statement */,
+				BAACFDD626F13FE5003E551F /* Login */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		BAACFDA526F13C00003E551F = {
 			isa = PBXGroup;
 			children = (
@@ -80,8 +110,8 @@
 		BAACFDB026F13C00003E551F /* CleanSwift */ = {
 			isa = PBXGroup;
 			children = (
-				BAACFDD726F13FEB003E551F /* Statement */,
-				BAACFDD626F13FE5003E551F /* Login */,
+				BA3611D526F24F8E00A9A7F5 /* Scenes */,
+				BA3611D126F24E9200A9A7F5 /* Services */,
 				BAACFDB126F13C00003E551F /* AppDelegate.swift */,
 				BAACFDB326F13C00003E551F /* SceneDelegate.swift */,
 				BAACFDB526F13C00003E551F /* ViewController.swift */,
@@ -198,11 +228,13 @@
 				BAACFDED26F14012003E551F /* statementModels.swift in Sources */,
 				BAACFDDE26F14002003E551F /* loginPresenter.swift in Sources */,
 				BAACFDB626F13C00003E551F /* ViewController.swift in Sources */,
+				BA3611D726F2597400A9A7F5 /* APIModels.swift in Sources */,
 				BAACFDEF26F14012003E551F /* statementInteractor.swift in Sources */,
 				BAACFDE226F14002003E551F /* loginViewController.swift in Sources */,
 				BAACFDE126F14002003E551F /* loginModels.swift in Sources */,
 				BAACFDB226F13C00003E551F /* AppDelegate.swift in Sources */,
 				BAACFDEB26F14012003E551F /* statementWorker.swift in Sources */,
+				BA3611D426F24EC700A9A7F5 /* APIRequest.swift in Sources */,
 				BAACFDB426F13C00003E551F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

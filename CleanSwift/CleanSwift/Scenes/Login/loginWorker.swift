@@ -12,9 +12,8 @@
 
 import UIKit
 
-class loginWorker
-{
-  func doSomeWork()
-  {
+class loginWorker{
+  func doLogin(request: login.Login.Request){
+    APIRequest().login(loginData: request)
   }
 }

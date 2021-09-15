@@ -14,7 +14,7 @@ import UIKit
 
 protocol loginDisplayLogic: class
 {
-  func displaySomething(viewModel: login.Something.ViewModel)
+  func displaySomething(viewModel: login.Login.ViewModel)
 }
 
 class loginViewController: UIViewController, loginDisplayLogic
@@ -66,15 +66,18 @@ class loginViewController: UIViewController, loginDisplayLogic
   
   // MARK: View lifecycle
   
-  override func viewDidLoad()
-  {
+  override func viewDidLoad() {
     super.viewDidLoad()
-    doSomething()
   }
   
   // MARK: Do something
   
-  //@IBOutlet weak var nameTextField: UITextField!
+    @IBAction func loginButton(_ sender: UIButton) {
+    
+        doLogin()
+    }
+    
+    //@IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var swtBiometric: UISwitch!
     @IBOutlet weak var swtEmail: UISwitch!
     @IBOutlet weak var txtPassword: UITextField!
@@ -82,13 +85,13 @@ class loginViewController: UIViewController, loginDisplayLogic
     @IBOutlet weak var txtError: UILabel!
     @IBOutlet weak var btnLogin: UIButton!
   
-  func doSomething()
+  func doLogin()
   {
-    let request = login.Something.Request()
-    interactor?.doSomething(request: request)
+    let request = login.Login.Request(login: txtUsername.text!, password: txtPassword.text!)
+    interactor?.doLogin(request: request)
   }
   
-  func displaySomething(viewModel: login.Something.ViewModel)
+  func displaySomething(viewModel: login.Login.ViewModel)
   {
     //nameTextField.text = viewModel.name
   }

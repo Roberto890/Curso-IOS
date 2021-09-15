@@ -120,6 +120,9 @@
                                                     <constraint firstAttribute="height" constant="50" id="tqR-av-HY9"/>
                                                 </constraints>
                                                 <state key="normal" title="Login"/>
+                                                <connections>
+                                                    <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eOE-eH-Lvc"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
