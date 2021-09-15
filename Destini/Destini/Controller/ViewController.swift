@@ -26,12 +26,12 @@ class ViewController: UIViewController {
 
     @IBAction func choiceMade(_ sender: UIButton) {
         let userChoice = sender.tag
-        if userChoice == 1{
+        if userChoice == 1 {
             brainStory.nextStory(next: choice1Destination)
         }else{
             brainStory.nextStory(next: choice2Destination)
         }
-        
+
         UIUpdate()
     }
     
