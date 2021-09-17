@@ -45,10 +45,10 @@ struct APIRequest {
                 
                 if response.statusCode == 200 {
                     do{
-                        let jsonResponse = try JSONDecoder().decode(APIModels.APIRequest.self, from: data!)
+                        let jsonResponse = try JSONDecoder().decode(APIModels.APIRequestLogin.self, from: data!)
                         print(jsonResponse)
                         
-//                        delegate?.didRequestSuccess(self, data: data)
+                        delegate?.didRequestSuccess(self, data: jsonResponse)
                         
                     }catch{
                         delegate?.didRequestFailed(self, error: error)
@@ -85,9 +85,9 @@ struct APIRequest {
                 
                 if response.statusCode == 200{
                     do{
-//                        let jsonResponse = try JSONDecoder().decode([StatementAPI].self, from: data!)
+                        let jsonResponse = try JSONDecoder().decode([APIModels.APIRequestStatement].self, from: data!)
                         
-                        delegate?.didRequestSuccess(self, data: data)
+                        delegate?.didRequestSuccess(self, data: jsonResponse)
                         
                     }catch{
                         print(error)

@@ -22,19 +22,23 @@ protocol loginDataStore
   //var name: String { get set }
 }
 
-class loginInteractor: loginBusinessLogic, loginDataStore
-{
-  var presenter: loginPresentationLogic?
-  var worker: loginWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doLogin(request: login.Login.Request){
-    worker = loginWorker()
-    worker?.doLogin(request: request)
+class loginInteractor: loginBusinessLogic, loginDataStore, loginWorkerDelegate {
+
+    var presenter: loginPresentationLogic?
+    var worker: loginWorker? = loginWorker()
+    //var name: String = ""
+
+    // MARK: Do something
+
+    func doLogin(request: login.Login.Request){
+        worker?.delegate = self
+        worker?.doLogin(request: request)
+    }
     
-    let response = login.Login.Response()
-    presenter?.presentSomething(response: response)
-  }
+    func passData(_: loginWorker, data: Any) {
+        let userData = data as! APIModels.APIRequestLogin
+        let user = UserModel(name: userData.nome, cpf: userData.cpf, balance: userData.saldo, token: userData.token)
+        let response = login.Login.Response(user: user)
+        presenter?.presentSomething(response: response)
+    }
 }

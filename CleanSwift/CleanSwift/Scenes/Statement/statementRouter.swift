@@ -29,32 +29,32 @@ class statementRouter: NSObject, statementRoutingLogic, statementDataPassing
   
   // MARK: Routing
   
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
+//  func routeToSomewhere(segue: UIStoryboardSegue?)
+//  {
+//    if let segue = segue {
+//      let destinationVC = segue.destination as! loginViewController
+//      var destinationDS = destinationVC.router!.dataStore!
+//      passDataToSomewhere(source: dataStore!, destination: &destinationDS)
+//    } else {
+//      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//      let destinationVC = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! loginViewController
+//      var destinationDS = destinationVC.router!.dataStore!
+//      passDataToSomewhere(source: dataStore!, destination: &destinationDS)
+//      navigateToSomewhere(source: viewController!, destination: destinationVC)
+//    }
+//  }
 
   // MARK: Navigation
   
-  //func navigateToSomewhere(source: statementViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
+//  func navigateToSomewhere(source: statementViewController, destination: loginViewController)
+//  {
+//    source.show(destination, sender: nil)
+//  }
   
   // MARK: Passing data
   
-  //func passDataToSomewhere(source: statementDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+//  func passDataToSomewhere(source: statementDataStore, destination: inout loginViewController)
+//  {
+//    destination.name = source.name
+//  }
 }

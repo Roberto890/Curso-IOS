@@ -14,47 +14,47 @@ import UIKit
 
 @objc protocol loginRoutingLogic
 {
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToStatement(segue: UIStoryboardSegue?)
 }
 
 protocol loginDataPassing
 {
-  var dataStore: loginDataStore? { get }
+    var dataStore: loginDataStore? { get }
 }
 
 class loginRouter: NSObject, loginRoutingLogic, loginDataPassing
 {
-  weak var viewController: loginViewController?
-  var dataStore: loginDataStore?
-  
-  // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
-
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: loginViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
-  
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: loginDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+    weak var viewController: loginViewController?
+    var dataStore: loginDataStore?
+    
+    // MARK: Routing
+    
+    func routeToStatement(segue: UIStoryboardSegue?)
+    {
+        if let segue = segue {
+            let destinationVC = segue.destination as! statementViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToStatement(source: dataStore!, destination: &destinationDS)
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: "statementViewController") as! statementViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToStatement(source: dataStore!, destination: &destinationDS)
+            navigateToStatement(source: viewController!, destination: destinationVC)
+        }
+    }
+    
+    // MARK: Navigation
+    
+    func navigateToStatement(source: loginViewController, destination: statementViewController)
+    {
+        source.show(destination, sender: nil)
+    }
+    
+    // MARK: Passing data
+    
+    func passDataToStatement(source: loginDataStore, destination: inout statementDataStore)
+    {
+        //    destination.userData = source.name
+    }
 }

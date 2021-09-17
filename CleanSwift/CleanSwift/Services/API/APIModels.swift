@@ -8,10 +8,17 @@
 import Foundation
 
 struct APIModels {
-    struct APIRequest: Codable{
+    struct APIRequestLogin: Codable{
         let nome: String
         let cpf: String
         let saldo: Double
         let token: String
     }
+    
+    struct APIRequestStatement: Codable {
+        let data: String
+        let descricao: String
+        let valor: Double
+    }
+    
 }

@@ -40,6 +40,7 @@ class statementViewController: UIViewController, statementDisplayLogic
   
   private func setup()
   {
+    var userData: UserModel
     let viewController = self
     let interactor = statementInteractor()
     let presenter = statementPresenter()
@@ -54,8 +55,7 @@ class statementViewController: UIViewController, statementDisplayLogic
   
   // MARK: Routing
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let scene = segue.identifier {
       let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
       if let router = router, router.responds(to: selector) {

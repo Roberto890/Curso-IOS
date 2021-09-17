@@ -12,34 +12,29 @@
 
 import UIKit
 
-protocol loginDisplayLogic: class
-{
+protocol loginDisplayLogic: class{
   func displaySomething(viewModel: login.Login.ViewModel)
 }
 
-class loginViewController: UIViewController, loginDisplayLogic
-{
+class loginViewController: UIViewController, loginDisplayLogic{
   var interactor: loginBusinessLogic?
   var router: (NSObjectProtocol & loginRoutingLogic & loginDataPassing)?
 
   // MARK: Object lifecycle
   
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?){
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
   }
   
-  required init?(coder aDecoder: NSCoder)
-  {
+  required init?(coder aDecoder: NSCoder){
     super.init(coder: aDecoder)
     setup()
   }
   
   // MARK: Setup
   
-  private func setup()
-  {
+  private func setup(){
     let viewController = self
     let interactor = loginInteractor()
     let presenter = loginPresenter()
@@ -54,8 +49,7 @@ class loginViewController: UIViewController, loginDisplayLogic
   
   // MARK: Routing
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?){
     if let scene = segue.identifier {
       let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
       if let router = router, router.responds(to: selector) {
@@ -85,14 +79,16 @@ class loginViewController: UIViewController, loginDisplayLogic
     @IBOutlet weak var txtError: UILabel!
     @IBOutlet weak var btnLogin: UIButton!
   
-  func doLogin()
-  {
+  func doLogin(){
     let request = login.Login.Request(login: txtUsername.text!, password: txtPassword.text!)
     interactor?.doLogin(request: request)
+    
   }
   
-  func displaySomething(viewModel: login.Login.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
+  func displaySomething(viewModel: login.Login.ViewModel){
+    btnLogin.setTitle(viewModel.user.cpf, for: .normal)
+    DispatchQueue.main.async {
+        self.router?.routeToStatement(segue: nil)
+    }
   }
 }

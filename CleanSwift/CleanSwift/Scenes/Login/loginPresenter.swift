@@ -12,20 +12,24 @@
 
 import UIKit
 
-protocol loginPresentationLogic
-{
-  func presentSomething(response: login.Login.Response)
+protocol loginPresentationLogic{
+    func presentSomething(response: login.Login.Response)
+    func presentSomethingError(response: login.Login.Response)
 }
 
 class loginPresenter: loginPresentationLogic
 {
-  weak var viewController: loginDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: login.Login.Response)
-  {
-    let viewModel = login.Login.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    
+    
+    weak var viewController: loginDisplayLogic?
+    
+    // MARK: Do something
+    
+    func presentSomething(response: login.Login.Response){
+        let viewModel = login.Login.ViewModel(user: response.user)
+        viewController?.displaySomething(viewModel: viewModel)
+    }
+    func presentSomethingError(response: login.Login.Response) {
+        print("aaa")
+    }
 }

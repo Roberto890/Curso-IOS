@@ -12,8 +12,54 @@
 
 import UIKit
 
-class loginWorker{
-  func doLogin(request: login.Login.Request){
-    APIRequest().login(loginData: request)
-  }
+protocol loginWorkerDelegate {
+    func passData(_: loginWorker, data: Any)
+}
+
+
+
+class loginWorker: APIResquestDelegate{
+
+    var delegate: loginWorkerDelegate?
+    var apiRequest: APIRequest? = APIRequest()
+    
+    func doLogin(request: login.Login.Request){
+        apiRequest?.delegate = self
+        apiRequest!.login(loginData: request)
+    }
+    
+    func didRequestSuccess(_: APIRequest, data: Any) {
+        DispatchQueue.main.async {
+            self.delegate?.passData(self, data: data)
+//            print(userData.cpf)
+//            self.dataUser.populate(userData)
+//            SVProgressHUD.dismiss()
+//            self.btnLogin.isEnabled = true
+//            self.keyChainSave()
+//            self.performSegue(withIdentifier: "loginSegue", sender: self)
+        }
+    }
+    
+    func didRequestFailed(_: APIRequest, error: Error) {
+        DispatchQueue.main.async {
+            print(error)
+//            SVProgressHUD.dismiss()
+//            self.btnLogin.isEnabled = true
+        }
+    }
+    
+    func didResponseFailed(_: APIRequest, response: HTTPURLResponse) {
+        DispatchQueue.main.async {
+            if (response.statusCode == 401) {
+//                let alert = UIAlertController(title: "Aviso", message: "Credenciais inválidas", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+            }else {
+//                self.txtError.isHidden = false
+            }
+//            SVProgressHUD.dismiss()
+//            self.btnLogin.isEnabled = true
+        }
+    }
+    
 }
