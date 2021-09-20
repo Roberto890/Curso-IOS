@@ -15,9 +15,10 @@ class CalculateViewController: UIViewController {
     @IBOutlet weak var sldWeight: UISlider!
     @IBOutlet weak var sldHeight: UISlider!
     
+    var calculatorModel = CalculatorModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func heightSliderChanged(_ sender: UISlider) {
@@ -25,15 +26,32 @@ class CalculateViewController: UIViewController {
     }
     
     @IBAction func weightSliderChanged(_ sender: UISlider) {
-        lblUserWeight.text = "\(Int(sender.value))Kg"
+        lblUserWeight.text = "\(String(format: "%.0f", sender.value))Kg"
     }
     
     @IBAction func calculatePressed(_ sender: UIButton) {
         let height = sldHeight.value
         let weight = sldWeight.value
         
-        let bmi = weight/pow(height, 2)
-        print(bmi)
+        if height == 0 || weight == 0 {
+            let alert = UIAlertController(title: "Alert", message: "Height and Weight can't be zero", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }else{
+            calculatorModel.calculateBMI(height: height, weight: weight)
+            
+            self.performSegue(withIdentifier: "goToResult", sender: self)
+        }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToResult" {
+            let destinationVC = segue.destination as! ResultViewController
+            destinationVC.bmiValue = calculatorModel.getBMIValue()
+            destinationVC.bmiMessage = calculatorModel.getBMIMessage()
+            destinationVC.bmiColor = calculatorModel.getBMIColor()
+        }
+    }
+    
 }
 

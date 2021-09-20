@@ -14,6 +14,8 @@
 		AD0B9F83230D61840065EFD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD0B9F82230D61840065EFD9 /* Assets.xcassets */; };
 		BA3611D026F2362500A9A7F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA3611CE26F2362500A9A7F5 /* LaunchScreen.storyboard */; };
 		BA3611D926F2666300A9A7F5 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3611D826F2666300A9A7F5 /* ResultViewController.swift */; };
+		BAB08DD026F8B6540055B47C /* CalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB08DCF26F8B6540055B47C /* CalculatorModel.swift */; };
+		BAB08DD226F8C6920055B47C /* BMIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB08DD126F8C6920055B47C /* BMIModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		AD0B9F87230D61840065EFD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA3611CF26F2362500A9A7F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../Destini/Destini/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA3611D826F2666300A9A7F5 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		BAB08DCF26F8B6540055B47C /* CalculatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorModel.swift; sourceTree = SOURCE_ROOT; };
+		BAB08DD126F8C6920055B47C /* BMIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIModel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,8 @@
 		AD0B9F8F230D63EA0065EFD9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BAB08DCF26F8B6540055B47C /* CalculatorModel.swift */,
+				BAB08DD126F8C6920055B47C /* BMIModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -166,6 +172,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD0B9F7E230D61800065EFD9 /* CalculateViewController.swift in Sources */,
+				BAB08DD026F8B6540055B47C /* CalculatorModel.swift in Sources */,
+				BAB08DD226F8C6920055B47C /* BMIModel.swift in Sources */,
 				AD0B9F7A230D61800065EFD9 /* AppDelegate.swift in Sources */,
 				AD0B9F7C230D61800065EFD9 /* SceneDelegate.swift in Sources */,
 				BA3611D926F2666300A9A7F5 /* ResultViewController.swift in Sources */,
