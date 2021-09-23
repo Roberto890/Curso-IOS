@@ -5,6 +5,9 @@ target 'Flash Chat' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Flash Chat
+	# Pods for Flash Chat
+	
+	pod 'Firebase/Auth'
+	pod 'Firebase/Firestore'
 
 end
