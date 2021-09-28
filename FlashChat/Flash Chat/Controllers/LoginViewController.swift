@@ -16,19 +16,20 @@ class LoginViewController: UIViewController {
     
 
     @IBAction func loginPressed(_ sender: UIButton) {
-        
+        sender.isEnabled = false
         if let email = emailTextfield.text, let password = passwordTextfield.text {
             Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                 if let e = error {
+                    sender.isEnabled = true
                     let errorMessage = e.localizedDescription
                     print(e)
                     let alert = UIAlertController(title: "Warning", message: errorMessage, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(title: "OKey", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 } else {
-                    
+                    sender.isEnabled = true
                     //Navigate to the ChatViewController
-                    self.performSegue(withIdentifier: "LoginToChat", sender: self)
+                    self.performSegue(withIdentifier: K.loginSegue, sender: self)
                     
                 }
             }
