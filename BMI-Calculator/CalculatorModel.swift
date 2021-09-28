@@ -40,7 +40,6 @@ struct CalculatorModel {
     }
     
     func getBMIValue() -> String{
-        
         let bmiValue = String(format: "%.1f", bmi!.value)
         return bmiValue
     }
