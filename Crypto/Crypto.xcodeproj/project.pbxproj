@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		ADA8AC052329367100626376 /* ByteCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ByteCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADA8AC052329367100626376 /* Crypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADA8AC082329367100626376 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADA8AC0A2329367100626376 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		ADA8AC0C2329367100626376 /* CoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinViewController.swift; sourceTree = "<group>"; };
@@ -46,7 +46,7 @@
 		ADA8ABFC2329367100626376 = {
 			isa = PBXGroup;
 			children = (
-				ADA8AC072329367100626376 /* ByteCoin */,
+				ADA8AC072329367100626376 /* Crypto */,
 				ADA8AC062329367100626376 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +54,12 @@
 		ADA8AC062329367100626376 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				ADA8AC052329367100626376 /* ByteCoin.app */,
+				ADA8AC052329367100626376 /* Crypto.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		ADA8AC072329367100626376 /* ByteCoin */ = {
+		ADA8AC072329367100626376 /* Crypto */ = {
 			isa = PBXGroup;
 			children = (
 				BA1E704726FB6E2C00A19165 /* SupportingFiles */,
@@ -70,7 +70,7 @@
 				ADA8AC132329367300626376 /* LaunchScreen.storyboard */,
 				ADA8AC162329367300626376 /* Info.plist */,
 			);
-			path = ByteCoin;
+			path = Crypto;
 			sourceTree = "<group>";
 		};
 		ADA8AC1C232936FE00626376 /* View */ = {
@@ -111,9 +111,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		ADA8AC042329367100626376 /* ByteCoin */ = {
+		ADA8AC042329367100626376 /* Crypto */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ADA8AC192329367300626376 /* Build configuration list for PBXNativeTarget "ByteCoin" */;
+			buildConfigurationList = ADA8AC192329367300626376 /* Build configuration list for PBXNativeTarget "Crypto" */;
 			buildPhases = (
 				ADA8AC012329367100626376 /* Sources */,
 				ADA8AC022329367100626376 /* Frameworks */,
@@ -123,9 +123,9 @@
 			);
 			dependencies = (
 			);
-			name = ByteCoin;
+			name = Crypto;
 			productName = ByteCoin;
-			productReference = ADA8AC052329367100626376 /* ByteCoin.app */;
+			productReference = ADA8AC052329367100626376 /* Crypto.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -143,7 +143,7 @@
 					};
 				};
 			};
-			buildConfigurationList = ADA8AC002329367100626376 /* Build configuration list for PBXProject "ByteCoin" */;
+			buildConfigurationList = ADA8AC002329367100626376 /* Build configuration list for PBXProject "Crypto" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -156,7 +156,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				ADA8AC042329367100626376 /* ByteCoin */,
+				ADA8AC042329367100626376 /* Crypto */,
 			);
 		};
 /* End PBXProject section */
@@ -363,7 +363,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		ADA8AC002329367100626376 /* Build configuration list for PBXProject "ByteCoin" */ = {
+		ADA8AC002329367100626376 /* Build configuration list for PBXProject "Crypto" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ADA8AC172329367300626376 /* Debug */,
@@ -372,7 +372,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ADA8AC192329367300626376 /* Build configuration list for PBXNativeTarget "ByteCoin" */ = {
+		ADA8AC192329367300626376 /* Build configuration list for PBXNativeTarget "Crypto" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ADA8AC1A2329367300626376 /* Debug */,
