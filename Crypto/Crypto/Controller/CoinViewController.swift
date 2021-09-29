@@ -1,9 +1,6 @@
 //
 //  CoinViewController.swift
-//  ByteCoin
-//
-//  Created by Angela Yu on 11/09/2019.
-//  Copyright © 2019 The App Brewery. All rights reserved.
+//  Crypto
 //
 
 import UIKit
@@ -14,7 +11,7 @@ class CoinViewController: UIViewController {
     @IBOutlet weak var lblCurrency: UILabel!
     @IBOutlet weak var pickerCurrency: UIPickerView!
     
-    var coinManager = CoinManager()
+    var coinManager = CriptoService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +21,7 @@ class CoinViewController: UIViewController {
         pickerCurrency.dataSource = self
         pickerCurrency.delegate = self
         
-        coinManager.getCoinPrice(for: "USD")
+        coinManager.getCoinPrice(for: "USD", and: "BTC")
     }
 }
 
@@ -45,14 +42,14 @@ extension CoinViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let currency = coinManager.currencyArray[row]
-        coinManager.getCoinPrice(for: currency)
+        coinManager.getCoinPrice(for: currency, and: "BTC")
     }
     
 }
 
 //MARK:- CoinManagerDelegate
-extension CoinViewController: CoinManagerDelegate {
-    func didSucessCoin(_ coinManager: CoinManager, coinModel: CoinModel) {
+extension CoinViewController: CriptoServiceDelegate {
+    func didSucessCoin(_ coinManager: CriptoService, coinModel: CoinModel) {
         DispatchQueue.main.async {
             self.lblCurrency.text = coinModel.coinCurrency
             self.lblCriptoValue.text = coinModel.coinValueFormated

@@ -1,29 +1,29 @@
 //
-//  CoinManager.swift
-//  ByteCoin
+//  CriptoService.swift
+//  Crypto
 //
-//  Created by Angela Yu on 11/09/2019.
-//  Copyright © 2019 The App Brewery. All rights reserved.
 //
 
 import Foundation
 
-protocol CoinManagerDelegate {
-    func didSucessCoin(_ coinManager: CoinManager, coinModel: CoinModel)
+protocol CriptoServiceDelegate {
+    func didSucessCoin(_ coinManager: CriptoService, coinModel: CoinModel)
     func didFailedWithError(error: Error)
 }
 
-struct CoinManager {
+struct CriptoService {
     
-    var delegate: CoinManagerDelegate?
+    var delegate: CriptoServiceDelegate?
     
-    let baseURL = "https://rest.coinapi.io/v1/exchangerate/BTC/"
+    let baseURL = "https://rest.coinapi.io/v1/exchangerate/"
     let apiKey = "560BFDF0-815A-4680-BEA4-0D4AD30A19FC"
     
-    func getCoinPrice(for currency: String){
-        let urlString = "\(baseURL)\(currency)"
+    func getCoinPrice(for currency: String, and cripto: String){
+        let urlString = "\(baseURL)/\(cripto)/\(currency)"
         peformRequest(with: urlString)
     }
+    
+    let criptoCoin = ["BTC","ETH","USDT","ADA","BNB","XRP","SOL","USDC","DOT","DOGE"]
     
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CriptoCellReuse" id="gTV-IL-0wX" customClass="CriptoCell" customModule="Crypto" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="109" height="94"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="109" height="94"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EpE-gx-PFP">
+                        <rect key="frame" x="0.0" y="0.0" width="109" height="94"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pFF-1C-ERU">
+                                <rect key="frame" x="0.0" y="0.0" width="109" height="94"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalCompressionResistancePriority="600" translatesAutoresizingMaskIntoConstraints="NO" id="DDR-Jm-shU">
+                                        <rect key="frame" x="0.0" y="0.0" width="109" height="64"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="BTC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iA3-it-qwy">
+                                        <rect key="frame" x="0.0" y="64" width="109" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pFF-1C-ERU" firstAttribute="leading" secondItem="EpE-gx-PFP" secondAttribute="leading" id="2v8-77-OpB"/>
+                            <constraint firstItem="pFF-1C-ERU" firstAttribute="top" secondItem="EpE-gx-PFP" secondAttribute="top" id="DUN-F9-5zx"/>
+                            <constraint firstAttribute="trailing" secondItem="pFF-1C-ERU" secondAttribute="trailing" id="Met-Ce-kRF"/>
+                            <constraint firstAttribute="bottom" secondItem="pFF-1C-ERU" secondAttribute="bottom" id="nn3-c5-WkO"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="EpE-gx-PFP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="28F-Dl-Mk6"/>
+                <constraint firstAttribute="bottom" secondItem="EpE-gx-PFP" secondAttribute="bottom" id="fdx-be-UOw"/>
+                <constraint firstAttribute="trailing" secondItem="EpE-gx-PFP" secondAttribute="trailing" id="tEf-LA-ZiB"/>
+                <constraint firstItem="EpE-gx-PFP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="yrY-Td-OaE"/>
+            </constraints>
+            <size key="customSize" width="109" height="94"/>
+            <connections>
+                <outlet property="coinImage" destination="DDR-Jm-shU" id="GFU-cR-aTO"/>
+                <outlet property="coinLabel" destination="iA3-it-qwy" id="MWt-LM-GjQ"/>
+            </connections>
+            <point key="canvasLocation" x="180.43478260869566" y="87.723214285714278"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
