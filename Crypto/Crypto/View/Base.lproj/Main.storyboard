@@ -30,15 +30,24 @@
         <!--List Cripto View Controller-->
         <scene sceneID="wYc-SL-u6X">
             <objects>
-                <viewController id="ZbV-qc-zgJ" customClass="ListCriptoViewController" customModule="Crypto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="ZbV-qc-zgJ" customClass="ListCriptoViewController" customModule="Crypto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cAV-12-gff">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hI8-n5-T8j">
+                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="3XN-Gt-26H">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                </subviews>
+                            </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cmb-tV-lDP">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="139" width="414" height="723"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9cn-CY-NcW">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="0.0" id="9cn-CY-NcW">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -53,43 +62,31 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="IL4-rk-JRN">
-                                        <rect key="frame" x="143" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Gzk-Xc-Okz">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="rLJ-BY-p1S">
-                                        <rect key="frame" x="286" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SKA-t1-FBh">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="G6C-ek-fob"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Cmb-tV-lDP" firstAttribute="top" secondItem="G6C-ek-fob" secondAttribute="top" id="Caa-Co-N7X"/>
-                            <constraint firstItem="G6C-ek-fob" firstAttribute="trailing" secondItem="Cmb-tV-lDP" secondAttribute="trailing" id="FuA-vq-sXm"/>
-                            <constraint firstItem="G6C-ek-fob" firstAttribute="bottom" secondItem="Cmb-tV-lDP" secondAttribute="bottom" id="GQN-Ei-jJP"/>
-                            <constraint firstItem="Cmb-tV-lDP" firstAttribute="leading" secondItem="G6C-ek-fob" secondAttribute="leading" id="uDy-LO-Fam"/>
+                            <constraint firstItem="Cmb-tV-lDP" firstAttribute="leading" secondItem="G6C-ek-fob" secondAttribute="leading" id="3Em-Um-3di"/>
+                            <constraint firstItem="Cmb-tV-lDP" firstAttribute="bottom" secondItem="G6C-ek-fob" secondAttribute="bottom" id="B8e-D0-CIL"/>
+                            <constraint firstItem="Cmb-tV-lDP" firstAttribute="trailing" secondItem="G6C-ek-fob" secondAttribute="trailing" id="HCV-pD-wIx"/>
+                            <constraint firstItem="hI8-n5-T8j" firstAttribute="top" secondItem="G6C-ek-fob" secondAttribute="top" id="PLY-Hs-GnS"/>
+                            <constraint firstItem="G6C-ek-fob" firstAttribute="trailing" secondItem="hI8-n5-T8j" secondAttribute="trailing" id="jVJ-Gc-sBr"/>
+                            <constraint firstItem="Cmb-tV-lDP" firstAttribute="top" secondItem="hI8-n5-T8j" secondAttribute="bottom" id="kBj-tM-GaW"/>
+                            <constraint firstItem="hI8-n5-T8j" firstAttribute="leading" secondItem="G6C-ek-fob" secondAttribute="leading" id="ni0-4s-SP4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="mEO-xT-yjU"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="mEO-xT-yjU"/>
                     <connections>
                         <outlet property="collectionView" destination="Cmb-tV-lDP" id="aBI-g0-3rJ"/>
-                        <segue destination="BYZ-38-t0r" kind="show" id="Cs0-Lh-gcc"/>
+                        <outlet property="searchBar" destination="3XN-Gt-26H" id="JWT-My-LQO"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="coinDetailsSegue" id="Cs0-Lh-gcc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXW-zE-0md" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-757" y="118"/>
+            <point key="canvasLocation" x="-757.97101449275374" y="117.85714285714285"/>
         </scene>
         <!--Coin View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -124,8 +121,8 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ocx-jo-FtC">
                                                 <rect key="frame" x="0.0" y="0.0" width="169" height="80"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bitcoinsign.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Qdw-gh-nWc">
-                                                        <rect key="frame" x="0.0" y="0.5" width="80" height="79"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qdw-gh-nWc">
+                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                         <color key="tintColor" name="Icon Color"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="80" id="0gP-tk-0h7"/>
@@ -168,7 +165,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CjI-yV-vnC"/>
-                        <color key="backgroundColor" name="Background Color"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ct2-jk-pgH" firstAttribute="trailing" secondItem="CjI-yV-vnC" secondAttribute="trailing" id="0NU-ng-zoE"/>
                             <constraint firstItem="WWW-oe-lHd" firstAttribute="top" secondItem="CjI-yV-vnC" secondAttribute="top" constant="10" id="6gh-lx-Pg8"/>
@@ -180,6 +177,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="VRU-r5-JtK"/>
                     <connections>
+                        <outlet property="imgCoin" destination="Qdw-gh-nWc" id="pdP-gg-5WV"/>
+                        <outlet property="lblCriptoName" destination="LAM-79-vXn" id="9HO-e9-2fW"/>
                         <outlet property="lblCriptoValue" destination="N2a-Ax-iRV" id="k54-1Z-U4X"/>
                         <outlet property="lblCurrency" destination="MAn-y0-nXv" id="0ee-YX-3zY"/>
                         <outlet property="pickerCurrency" destination="ct2-jk-pgH" id="b4c-E4-D94"/>
@@ -191,10 +190,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bitcoinsign.circle.fill" catalog="system" width="128" height="121"/>
-        <namedColor name="Background Color">
-            <color red="0.50599998235702515" green="0.92500001192092896" blue="0.92500001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="Icon Color">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

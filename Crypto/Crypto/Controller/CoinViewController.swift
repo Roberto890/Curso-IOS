@@ -7,11 +7,15 @@ import UIKit
 
 class CoinViewController: UIViewController {
     
+    @IBOutlet weak var lblCriptoName: UILabel!
     @IBOutlet weak var lblCriptoValue: UILabel!
     @IBOutlet weak var lblCurrency: UILabel!
+    @IBOutlet weak var imgCoin: UIImageView!
     @IBOutlet weak var pickerCurrency: UIPickerView!
     
+    let imageManager = ImageService()
     var coinManager = CriptoService()
+    var coinValues: ImageModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +25,23 @@ class CoinViewController: UIViewController {
         pickerCurrency.dataSource = self
         pickerCurrency.delegate = self
         
-        coinManager.getCoinPrice(for: "USD", and: "BTC")
+        criptoLoad(imageModel: coinValues)
+        
+        
     }
+    
+    func criptoLoad(imageModel: ImageModel?) {
+        if let criptoName = coinValues?.criptoType, let criptoUrl = coinValues?.coinImage {
+            lblCriptoName.text = criptoName
+            coinManager.getCoinPrice(for: "USD", and: criptoName)
+            imageManager.loadImage(urlImage: criptoUrl) { result in
+                DispatchQueue.main.async {
+                    self.imgCoin.image = result
+                }
+            }
+        }
+    }
+    
 }
 
 //MARK:- UIPickerViewDataSource and Delegate
@@ -42,7 +61,8 @@ extension CoinViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let currency = coinManager.currencyArray[row]
-        coinManager.getCoinPrice(for: currency, and: "BTC")
+        lblCurrency.text = currency
+        coinManager.getCoinPrice(for: currency, and: coinValues!.criptoType)
     }
     
 }

@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,10 +24,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="109" height="94"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalCompressionResistancePriority="600" translatesAutoresizingMaskIntoConstraints="NO" id="DDR-Jm-shU">
-                                        <rect key="frame" x="0.0" y="0.0" width="109" height="64"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="109" height="50"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="BTC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iA3-it-qwy">
-                                        <rect key="frame" x="0.0" y="64" width="109" height="30"/>
+                                        <rect key="frame" x="0.0" y="50" width="109" height="44"/>
                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -36,7 +35,6 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="pFF-1C-ERU" firstAttribute="leading" secondItem="EpE-gx-PFP" secondAttribute="leading" id="2v8-77-OpB"/>
                             <constraint firstItem="pFF-1C-ERU" firstAttribute="top" secondItem="EpE-gx-PFP" secondAttribute="top" id="DUN-F9-5zx"/>
@@ -61,9 +59,4 @@
             <point key="canvasLocation" x="180.43478260869566" y="87.723214285714278"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

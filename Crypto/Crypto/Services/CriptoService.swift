@@ -15,11 +15,13 @@ struct CriptoService {
     
     var delegate: CriptoServiceDelegate?
     
-    let baseURL = "https://rest.coinapi.io/v1/exchangerate/"
+    let baseURL = "https://rest.coinapi.io/v1/exchangerate"
     let apiKey = "560BFDF0-815A-4680-BEA4-0D4AD30A19FC"
     
     func getCoinPrice(for currency: String, and cripto: String){
         let urlString = "\(baseURL)/\(cripto)/\(currency)"
+        print(cripto, currency)
+        print(urlString)
         peformRequest(with: urlString)
     }
     

@@ -13,9 +13,18 @@ class CriptoCell: UICollectionViewCell {
     @IBOutlet weak var coinImage: UIImageView!
     @IBOutlet weak var coinLabel: UILabel!
     
+//    var delegate: ListCriptoViewControllerDelegate!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
+//    @IBAction func PressedCoin(_ sender: UIButton) {
+//        let mydata = coinLabel.text!
+//        if(self.delegate != nil){
+//            self.delegate.callSegueFromCell(data: mydata)
+//        }
+//    }
+    
 }

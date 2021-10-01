@@ -4,7 +4,7 @@
 //
 //
 
-import Foundation
+import UIKit
 
 protocol ImageServiceDelegate {
     func didSucessImage(_ coinManager: ImageService, imagesModel: [ImageModel])
@@ -78,6 +78,16 @@ struct ImageService {
             self.delegate?.didFailedWithError(error: error)
             return nil
         }
+    }
+    
+    func loadImage(urlImage: String, completionHandler: @escaping(UIImage) -> Void) {
+        let url = URL(string: urlImage)!
+            let dataTask = URLSession.shared.dataTask(with: url) { (data, _, _) in
+                if let data = data {
+                    completionHandler(UIImage(data: data)!)
+                }
+            }
+        dataTask.resume()
     }
     
 }
