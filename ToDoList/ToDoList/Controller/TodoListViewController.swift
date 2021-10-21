@@ -7,17 +7,30 @@
 //
 
 import UIKit
+import CoreData
 
-class TodoListViewController: UITableViewController {
-
-    var itemArray = [ItemModel]()
+class TodoListViewController: UITableViewController, UISearchBarDelegate {
     
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+    var itemArray = [Item]()
+    var selectedCategory: Category? {
+        //did Set quando o valor for setado na variavel vai rodar oq tem dentro do didSet
+        didSet {
+            loadItems()
+            print("a")
+        }
+    }
+    
+    // Fazendo o singleton no appdelegate para pegar a instancia do banco de dados assim usamos o context para fazer o crud
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        loadItems()
+        
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
+        //pega todos os dados da tabela
+//        loadItems()
+//        print(itemArray.count)
         
     }
     
@@ -30,15 +43,17 @@ class TodoListViewController: UITableViewController {
         let alert = UIAlertController(title: "Add New Item", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             // what will happen when click in add item
-            
-            let newItem = ItemModel()
-            newItem.name = textField.text!
-            if newItem.name != "" {
+            if textField.text != "" {
+                
+                let newItem = Item(context: self.context)
+                newItem.name = textField.text
+                newItem.checked = false
+                newItem.parentCategory = self.selectedCategory
+                
                 self.itemArray.append(newItem)
-                
                 self.saveItems()
-                
             }
+            print(self.itemArray.count)
             
         }
         
@@ -53,63 +68,94 @@ class TodoListViewController: UITableViewController {
         
     }
     
-    //MARK: TableView Datasource Methods
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemArray.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
-        let item = itemArray[indexPath.row]
-        
-        cell.textLabel?.text = item.name
-        
-        //if item.checked is true make a checkmark else dismark
-        cell.accessoryType = item.checked ? .checkmark : .none
-        
-        return cell
-        
-    }
-
-    //MARK: tableView Delegate Methods
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print(itemArray[indexPath.row])
-        
-        itemArray[indexPath.row].checked = !itemArray[indexPath.row].checked
-
-        saveItems()
-            
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    //MARK: -Model Manipulation Methods
+    //MARK: - Model Manipulation Methods
     func saveItems(){
         
-        let encoder = PropertyListEncoder()
-        
         do {
-            let data = try encoder.encode(self.itemArray)
-            try data.write(to: self.dataFilePath!)
+            //CONTEXT.SAVE É O COMMIT DO CORE DATA
+            try context.save()
         } catch {
-            print("Error encoding item array, \(error)")
+            print("Error Saving items, \(error)")
         }
         
         self.tableView.reloadData()
     }
     
-    func loadItems(){
-        if let data = try? Data(contentsOf: dataFilePath!) {
-            let decoder = PropertyListDecoder()
-            do {
-                itemArray = try decoder.decode([ItemModel].self, from: data)
-            } catch {
-                print("Error decodint item array, \(error)")
+    //if dont have parameter load all files in table
+    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest(), and predicate: NSPredicate? = nil){
+        
+        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+        
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(type: .and, subpredicates: [categoryPredicate, additionalPredicate])
+        } else {
+            request.predicate = categoryPredicate
+        }
+        
+        
+        //chamamos o context novamente pois ele que faz o crud e passamos o fetch com os dados que queremos
+        do{
+            itemArray =  try context.fetch(request)
+        }catch{
+            print("Error loading items, \(error)")
+        }
+        tableView.reloadData()
+        
+    }
+    
+    //MARK: - TableView Methods
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return itemArray.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+        
+        let item = itemArray[indexPath.row]
+        
+        cell.textLabel?.text = item.name
+        
+        cell.accessoryType = item.checked ? .checkmark : .none
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        itemArray[indexPath.row].checked = !itemArray[indexPath.row].checked
+        
+        saveItems()
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+    }
+    
+    //MARK: - Search Bar Methods
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        
+        //Usamos o predicate para fazer comparação
+        // o [cd] "c" ignorar maiusculas e "d" as minusculas entao tanto faz ser maiusculo e minusculo nesse caso
+        let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
+        
+        //ordenar por nome em ordem alfabetica
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        
+        loadItems(with: request, and: predicate)
+       
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadItems()
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
             }
         }
     }
-
+    
 }
+
 
