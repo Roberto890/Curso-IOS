@@ -16,7 +16,6 @@ class TodoListViewController: UITableViewController, UISearchBarDelegate {
         //did Set quando o valor for setado na variavel vai rodar oq tem dentro do didSet
         didSet {
             loadItems()
-            print("a")
         }
     }
     
@@ -103,6 +102,23 @@ class TodoListViewController: UITableViewController, UISearchBarDelegate {
         
     }
     
+    func deleteItem(with position: Int){
+        let item = itemArray[position]
+        let deleteItemFetch: NSFetchRequest<Item> = Item.fetchRequest()
+        deleteItemFetch.predicate = NSPredicate(format: "name MATCHES %@", item.name!)
+        let deleteItemRequest = NSBatchDeleteRequest(fetchRequest: deleteItemFetch as! NSFetchRequest<NSFetchRequestResult>)
+        
+        do{
+            try context.execute(deleteItemRequest)
+            itemArray.remove(at: position)
+            try context.save()
+            
+        }catch{
+            print("Error loading items, \(error)")
+        }
+        
+    }
+    
     //MARK: - TableView Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemArray.count
@@ -123,11 +139,20 @@ class TodoListViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         itemArray[indexPath.row].checked = !itemArray[indexPath.row].checked
-        
         saveItems()
-        
         tableView.deselectRow(at: indexPath, animated: true)
         
+    }
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .destructive, title: "Remove") { (_,_,completionHandler) in
+            DispatchQueue.main.async {
+                self.deleteItem(with: indexPath.row)
+                self.tableView.reloadData()
+            }
+            completionHandler(true)
+        }
+        return UISwipeActionsConfiguration(actions: [action])
     }
     
     //MARK: - Search Bar Methods

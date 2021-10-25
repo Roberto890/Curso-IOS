@@ -14,6 +14,7 @@ class CategoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var categoryArray = [Category]()
+    var itemArray = [Item]()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -79,6 +80,32 @@ class CategoryViewController: UIViewController {
         
     }
     
+    func deleteCategory(with position: Int){
+        let category = categoryArray[position]
+        let deleteItemsFetch: NSFetchRequest<Item> = Item.fetchRequest()
+        deleteItemsFetch.predicate = NSPredicate(format: "parentCategory.name MATCHES %@", category.name!)
+        let deleteItemsRequest = NSBatchDeleteRequest(fetchRequest: deleteItemsFetch as! NSFetchRequest<NSFetchRequestResult>)
+        
+        let deleteCategoryFetch: NSFetchRequest<Category> = Category.fetchRequest()
+        
+        
+        do{
+            try context.execute(deleteItemsRequest)
+            try context.save()
+            
+            deleteCategoryFetch.predicate = NSPredicate(format: "name MATCHES %@", category.name! as String)
+            let deleteCategoryRequest = NSBatchDeleteRequest(fetchRequest: deleteCategoryFetch as! NSFetchRequest<NSFetchRequestResult>)
+            
+            try context.execute(deleteCategoryRequest)
+            categoryArray.remove(at: position)
+            try context.save()
+            
+        }catch{
+            print("Error loading items, \(error)")
+        }
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! TodoListViewController
         
@@ -117,5 +144,17 @@ extension CategoryViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .destructive, title: "Remove") { (_,_,completionHandler) in
+            DispatchQueue.main.async {
+                print(indexPath.row)
+                self.deleteCategory(with: indexPath.row)
+                self.tableView.reloadData()
+            }
+            completionHandler(true)
+        }
+        return UISwipeActionsConfiguration(actions: [action])
     }
 }
